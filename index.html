@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cine Galaxia - Compra de Boletos</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at top, #0d0d0d 0%, #1a1a1a 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.contenedor {
+    display: flex;
+    background: #111;
+    border: 2px solid #ff0040;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 0, 64, 0.4);
+    overflow: hidden;
+    max-width: 850px;
+    width: 95%;
+}
+
+.formulario {
+    flex: 1;
+    padding: 2rem;
+    background: rgba(15, 15, 15, 0.9);
+}
+
+.poster {
+    flex: 1;
+    background: url('img/cine.jpg') center/cover no-repeat;
+    position: relative;
+}
+.poster::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.6), transparent);
+}
+
+h1 {
+    text-align: center;
+    color: #ff0040;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px #ff0040;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+    color: #ff99b3;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: #fff;
+    margin-bottom: 1.1rem;
+    font-size: 1rem;
+    box-shadow: inset 0 0 8px rgba(255,0,64,0.3);
+    outline: none;
+}
+input:focus,
+select:focus {
+    box-shadow: 0 0 10px #ff0040;
+}
+
+button {
+    width: 100%;
+    background: linear-gradient(90deg, #ff0040, #ff6a00);
+    border: none;
+    padding: 0.9rem;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+button:hover {
+    background: linear-gradient(90deg, #ff6a00, #ff0040);
+    transform: scale(1.03);
+}
+
+a {
+    display: inline-block;
+    margin-top: 0.7rem;
+    margin-right: 0.5rem;
+    color: #ff6a00;
+    text-decoration: none;
+    font-weight: 600;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Menú superior */
+nav {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    background: rgba(15,15,15,0.85);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    border: 1px solid #ff0040;
+    box-shadow: 0 0 15px rgba(255,0,64,0.4);
+}
+nav a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #ff0040;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .contenedor {
+        flex-direction: column;
+    }
+    .poster {
+        height: 250px;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="informacion1.html">Información</a>
+</nav>
+
+<div class="contenedor">
+    <div class="formulario">
+        <h1>Compra tus boletos</h1>
+        <form action="cine.php" method="post" id="cine" autocomplete="off">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" required>
+
+            <label for="pelicula">Película</label>
+            <select name="pelicula" id="pelicula" required>
+                <option value="">Elige una película</option>
+                <option value="inception">Inception</option>
+                <option value="avatar">Avatar</option>
+                <option value="gladiador">Gladiador</option>
+                <option value="matrix">Matrix</option>
+                <option value="titanic">Titanic</option>
+                <option value="jurassic">Jurassic Park</option>
+                <option value="up">Up: Una Aventura de Altura</option>
+                <option value="parásitos">Parásitos</option>
+                <option value="spiderman">Spider-Man: Sin Camino a Casa</option>
+                <option value="batman">El Caballero de la Noche</option>
+            </select>
+
+            <label for="sala">Sala</label>
+            <select name="sala" id="sala" required>
+                <option value="">Elige una sala</option>
+                <option value="normal">Normal - $75</option>
+                <option value="3D">Sala 3D - $110</option>
+                <option value="vip">VIP - $145</option>
+            </select>
+
+            <label for="boletos">No. de boletos</label>
+            <input type="number" name="boletos" id="boletos" min="1" required>
+
+            <label for="niños">¿Lleva niños?</label>
+            <select name="niños" id="niños" required>
+                <option value="">Elige una opción</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+
+            <div id="campoNinos" style="display:none;">
+                <label for="cuantos">¿Cuántos niños lleva?</label>
+                <input type="number" name="cuantos" id="cuantos" min="1">
+            </div>
+
+            <button type="submit">Comprar</button>
+            <a href="ayudacine.php">Consulta</a>
+            <a href="graficascine.php">Gráficas</a>
+        </form>
+    </div>
+    <div class="poster"></div>
+</div>
+
+<script>
+const niños = document.getElementById('niños');
+const campoNinos = document.getElementById('campoNinos');
+const cuantos = document.getElementById('cuantos');
+const boletos = document.getElementById('boletos');
+
+niños.addEventListener('change', () => {
+    if (niños.value === 'si') {
+        campoNinos.style.display = '';
+        cuantos.required = true;
+        cuantos.value = '';
+        cuantos.max = boletos.value ? boletos.value - 1 : 1;
+    } else {
+        campoNinos.style.display = 'none';
+        cuantos.value = '';
+        cuantos.required = false;
+    }
+});
+
+boletos.addEventListener('input', () => {
+    const totalBoletos = parseInt(boletos.value) || 1;
+    if (niños.value === 'si') {
+        cuantos.max = totalBoletos - 1;
+        if (parseInt(cuantos.value) > totalBoletos - 1) {
+            cuantos.value = totalBoletos - 1;
+        }
+    }
+});
+
+cuantos.addEventListener('input', () => {
+    const totalBoletos = parseInt(boletos.value) || 1;
+    const totalNinos = parseInt(cuantos.value) || 0;
+    if (totalNinos >= totalBoletos) {
+        cuantos.value = totalBoletos - 1 > 0 ? totalBoletos - 1 : 1;
+    }
+});
+</script>
+</body>
+</html>
